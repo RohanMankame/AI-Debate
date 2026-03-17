@@ -13,6 +13,9 @@ debates_store = {}
 
 @app.route('/api/start_debate', methods=['POST'])
 def start_debate():
+    """
+    Start a new debate with the provided topic, teams, and settings set by user.
+    """
     data = request.json
     try:
         topic = data['topic']
@@ -35,21 +38,30 @@ def start_debate():
             "history": [],
             "status": "ongoing"
         }
-        
+
         return jsonify({"debate_id": debate_id, "message": "Debate started successfully", "debate": debates_store[debate_id]})
     except KeyError as e:
         return jsonify({"error": f"Missing required field: {str(e)}"}), 400
 
+
+
+
+
 @app.route('/api/next_round', methods=['POST'])
 def next_round():
+    """
+    Simulate the next round of the debate for the current team.
+    """
     data = request.json
     debate_id = data.get('debate_id')
     
+    # Validate debate ID, cant start next round if debate is completed, or if debate dosent exists
     if not debate_id or debate_id not in debates_store:
         return jsonify({"error": "Invalid or missing debate_id"}), 404
         
     debate = debates_store[debate_id]
     
+    # Debare already completed, no more rounds to run
     if debate["status"] == "completed":
         return jsonify({"message": "Debate is already completed", "debate": debate})
         
@@ -78,8 +90,15 @@ def next_round():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
+
+
+
 @app.route('/api/debate/<debate_id>', methods=['GET'])
 def get_debate(debate_id):
+    """
+    Get the current state of the debate by ID. 
+    """
     if debate_id not in debates_store:
         return jsonify({"error": "Debate not found"}), 404
     return jsonify({"debate": debates_store[debate_id]})
