@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const API_URL = 'http://localhost:8000/api';
-const MODELS = ['gpt-3.5-turbo', 'gpt-4'];
+const MODELS = ['gpt-3.5-turbo', 'gpt-4','gpt-4.1-nano', 'gpt-4o-mini' ,'gpt-4.1','gpt-5-chat-latest' ];
 
 export default function SetupDebate({ onDebateStarted }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     const [formData, setFormData] = useState({
-        topic: 'Should Artificial Intelligence be strictly regulated?',
+        topic: 'Should AI be allowed to make decisions in critical areas like healthcare, criminal justice and financial markets?',
         rounds: 3,
-        points: 2,
-        team1Name: 'Team Pro-Regulation',
-        team1Viewpoint: 'AI poses existential risks and needs strict oversight from governments.',
+        points: 1,
+        team1Name: 'AI Advocates',
+        team1Viewpoint: 'AI should be allowed to make decisions in critical areas as it can analyze vast amounts of data, reduce human bias, and improve efficiency. With proper oversight, AI can enhance outcomes in healthcare, criminal justice, and financial markets.',
         team1Model: 'gpt-3.5-turbo',
-        team2Name: 'Team Innovation',
-        team2Viewpoint: 'Regulation stifles innovation and AI development should be driven by the free market.',
+        team2Name: 'AI Skeptics',
+        team2Viewpoint: 'AI should not be allowed to make decisions in critical areas due to ethical concerns, potential biases in training data, and lack of accountability. Human judgment is essential in these domains to ensure fairness, empathy, and moral responsibility.',
         team2Model: 'gpt-3.5-turbo'
     });
 

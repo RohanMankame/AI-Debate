@@ -94,7 +94,7 @@ export default function DebateStage({ debateContext, onReset }) {
                     <div className="round-block" style={{ border: 'none' }}>
                         <div style={{ padding: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', color: 'var(--accent-color)' }}>
                             <span className="loading-spinner"></span>
-                            <span>LLMs are actively constructing arguments...</span>
+                            <span>LLM is constructing arguments...</span>
                         </div>
                     </div>
                 )}
