@@ -58,7 +58,7 @@ export default function SetupDebate({ onDebateStarted }) {
 
     return (
         <div className="glass-card">
-            <h2 style={{ marginBottom: '1.5rem' }}>Configure Debate</h2>
+            <h4 style={{ marginBottom: '1.5rem', marginTop: '1.5rem' }}>Debate Config:</h4>
             {error && <div style={{ color: '#ef4444', marginBottom: '1rem' }}>{error}</div>}
             <form onSubmit={handleSubmit} className="setup-form">
                 <div className="form-group">

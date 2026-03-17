@@ -17,8 +17,8 @@ function App() {
   return (
     <div className="app-container">
       <header className="header">
-        <h1>AI Debate Stage</h1>
-        <p>Watch powerful LLMs debate any topic</p>
+            <h2>AI Debate Stage</h2>
+            <p>Watch powerful LLMs debate any topic</p>
       </header>
 
       <main>

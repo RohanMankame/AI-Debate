@@ -10,7 +10,6 @@ export default function DebateStage({ debateContext, onReset }) {
     const endOfHistoryRef = useRef(null);
 
     useEffect(() => {
-        // Scroll to bottom whenever history updates
         if (endOfHistoryRef.current) {
             endOfHistoryRef.current.scrollIntoView({ behavior: 'smooth' });
         }
@@ -33,14 +32,17 @@ export default function DebateStage({ debateContext, onReset }) {
     const isCompleted = debate.status === 'completed';
 
     return (
+        
         <div className="debate-stage">
+            
             <div className="debate-controls">
                 <div className="debate-status">
                     <span className="round-info">
                         {isCompleted ? 'Debate Concluded' : `Round ${debate.current_round} of ${debate.total_rounds}`}
                     </span>
-                    <span style={{ color: 'var(--text-secondary)', marginTop: '0.25rem' }}>Topic: {debate.topic}</span>
                 </div>
+
+                
 
                 <div style={{ display: 'flex', gap: '1rem' }}>
                     <button onClick={onReset} className="btn" style={{ background: 'rgba(255,255,255,0.1)', color: '#fff' }}>
@@ -54,6 +56,8 @@ export default function DebateStage({ debateContext, onReset }) {
                     )}
                 </div>
             </div>
+
+            <h4>Topic: {debate.topic}</h4>
 
             {error && <div style={{ color: '#ef4444', marginBottom: '1rem', textAlign: 'center' }}>{error}</div>}
 
