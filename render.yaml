@@ -11,12 +11,12 @@ services:
       - key: OPENAI_API_KEY
         sync: false # Set manually in Render dashboard
 
-  - type: static
+  - type: web
     name: ai-debate-frontend
-    env: static
+    runtime: static
     rootDir: Frontend
     buildCommand: npm install && npm run build
-    publishDir: dist
+    staticPublishDir: dist
     envVars:
       - key: VITE_API_URL
         fromService:
