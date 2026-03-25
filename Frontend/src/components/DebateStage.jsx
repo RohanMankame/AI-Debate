@@ -8,7 +8,7 @@ export default function DebateStage({ debateContext, onReset }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const endOfHistoryRef = useRef(null);
-
+    
     useEffect(() => {
         if (endOfHistoryRef.current) {
             endOfHistoryRef.current.scrollIntoView({ behavior: 'smooth' });
