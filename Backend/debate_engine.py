@@ -52,10 +52,13 @@ def build_prompt(topic, team, opponent, history, points_per_round, is_first_team
             history_text += f"\n[{t2_name}]:\n{h['team2_argument']}\n"
         
     # Build the prompt for the LLM
+    personality_instruction = f"\nPERSONALITY & STYLE: {team['personality']}\nYou MUST strictly adhere to this personality in your response." if team.get('personality') else ""
+    
     prompt = f"""You are a debater in a passionate, fast-paced live debate.
                 Topic: {topic}
                 Your Name: {team['name']}
                 Your Viewpoint: {team['viewpoint']}
+                {personality_instruction}
                 Your Opponent's Name: {opponent['name']}
 
                 DEBATE HISTORY SO FAR:
@@ -65,10 +68,11 @@ def build_prompt(topic, team, opponent, history, points_per_round, is_first_team
                 It is your turn to speak. Make {points_per_round} point(s) in your response.
 
                 CRITICAL STYLE RULES:
-                1. Be direct and raw and focoused on winning the debate. 
+                1. Be direct, raw, and focused on winning the debate. 
                 2. Sound like a real person passionately arguing their side, not an AI generating an essay.
                 3. Return ONLY your raw spoken words. No markdown, no headers, no bulleted lists. 
                 4. Do not repeat a previous point, only make new points that advance your argument or refute your opponent.
+                5. EMBODY YOUR ASSIGNED PERSONALITY COMPLETELY. If you are aggressive, be aggressive. If you are sarcastic, be sarcastic.
             """
     return prompt
 

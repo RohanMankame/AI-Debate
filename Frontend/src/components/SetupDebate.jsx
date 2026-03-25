@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
-const MODELS = ['gpt-3.5-turbo', 'gpt-4','gpt-4.1-nano', 'gpt-4o-mini' ,'gpt-4.1','gpt-5-chat-latest' ];
+const MODELS = ['gpt-3.5-turbo', 'gpt-4', 'gpt-4.1-nano', 'gpt-4o-mini', 'gpt-4.1', 'gpt-5-chat-latest'];
+const PERSONALITIES = [
+    { id: 'professional', label: 'Professional & Logical', prompt: 'Be precise, use data-driven arguments, and maintain a formal tone.' },
+    { id: 'aggressive', label: 'Aggressive & Assertive', prompt: 'Be bold, challenge every point your opponent makes, and use strong, forceful language.' },
+    { id: 'sarcastic', label: 'Sarcastic & Witty', prompt: 'Use humor, irony, and sharp wit to dismantle your opponent\'s logic.' },
+    { id: 'persuasive', label: 'Emotional & Persuasive', prompt: 'Focus on storytelling, human impact, and appealing to the audience\'s emotions.' },
+    { id: 'academic', label: 'Academic & Intellectual', prompt: 'Use complex vocabulary, cite hypothetical studies, and frame arguments within philosophical frameworks.' }
+];
 
 export default function SetupDebate({ onDebateStarted }) {
     const [loading, setLoading] = useState(false);
@@ -15,9 +22,11 @@ export default function SetupDebate({ onDebateStarted }) {
         team1Name: 'AI Advocates',
         team1Viewpoint: 'AI should be allowed to make decisions in critical areas.',
         team1Model: 'gpt-3.5-turbo',
+        team1Personality: 'professional',
         team2Name: 'AI Skeptics',
         team2Viewpoint: 'AI should not be allowed to make decisions in critical areas.',
-        team2Model: 'gpt-3.5-turbo'
+        team2Model: 'gpt-3.5-turbo',
+        team2Personality: 'professional'
     });
 
     const handleChange = (e) => {
@@ -36,12 +45,14 @@ export default function SetupDebate({ onDebateStarted }) {
             team1: {
                 name: formData.team1Name,
                 viewpoint: formData.team1Viewpoint,
-                model: formData.team1Model
+                model: formData.team1Model,
+                personality: PERSONALITIES.find(p => p.id === formData.team1Personality)?.prompt || ''
             },
             team2: {
                 name: formData.team2Name,
                 viewpoint: formData.team2Viewpoint,
-                model: formData.team2Model
+                model: formData.team2Model,
+                personality: PERSONALITIES.find(p => p.id === formData.team2Personality)?.prompt || ''
             }
         };
 
@@ -92,6 +103,12 @@ export default function SetupDebate({ onDebateStarted }) {
                             </select>
                         </div>
                         <div className="form-group">
+                            <label>Personality Style</label>
+                            <select name="team1Personality" value={formData.team1Personality} onChange={handleChange}>
+                                {PERSONALITIES.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
+                            </select>
+                        </div>
+                        <div className="form-group">
                             <label>Viewpoint/Instructions</label>
                             <textarea name="team1Viewpoint" value={formData.team1Viewpoint} onChange={handleChange} rows="3" required />
                         </div>
@@ -108,6 +125,12 @@ export default function SetupDebate({ onDebateStarted }) {
                             <label>Model</label>
                             <select name="team2Model" value={formData.team2Model} onChange={handleChange}>
                                 {MODELS.map(m => <option key={m} value={m}>{m}</option>)}
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label>Personality Style</label>
+                            <select name="team2Personality" value={formData.team2Personality} onChange={handleChange}>
+                                {PERSONALITIES.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
                             </select>
                         </div>
                         <div className="form-group">
