@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: ai-debate-backend
+    env: python
+    rootDir: Backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: OPENAI_API_KEY
+        sync: false # Set manually in Render dashboard
+
+  - type: static
+    name: ai-debate-frontend
+    env: static
+    rootDir: Frontend
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: ai-debate-backend
+          property: host

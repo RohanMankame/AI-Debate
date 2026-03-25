@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 const MODELS = ['gpt-3.5-turbo', 'gpt-4','gpt-4.1-nano', 'gpt-4o-mini' ,'gpt-4.1','gpt-5-chat-latest' ];
 
 export default function SetupDebate({ onDebateStarted }) {

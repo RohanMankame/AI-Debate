@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from debate_engine import run_debate_turn
@@ -106,4 +107,5 @@ def get_debate(debate_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+    port = int(os.environ.get('PORT', 8000))
+    app.run(debug=False, host='0.0.0.0', port=port)
