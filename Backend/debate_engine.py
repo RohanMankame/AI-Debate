@@ -72,7 +72,7 @@ def build_prompt(topic, team, opponent, history, points_per_round, is_first_team
                 2. Sound like a real person passionately arguing their side, not an AI generating an essay.
                 3. Return ONLY your raw spoken words. No markdown, no headers, no bulleted lists. 
                 4. Do not repeat a previous point, only make new points that advance your argument or refute your opponent.
-                5. EMBODY YOUR ASSIGNED PERSONALITY COMPLETELY. If you are aggressive, be aggressive. If you are sarcastic, be sarcastic.
+                5. Embody your given personility compleately, respond based on your personility type.
             """
     return prompt
 
@@ -144,7 +144,6 @@ def run_judge_verdict(debate):
     1. Clarity and logic of arguments.
     2. How well they refuted the opponent's points.
     3. Persuasiveness and evidence-based reasoning.
-    4. Adherence to their assigned persona/personality.
 
     RESPONSE FORMAT:
     Provide your verdict in this exact format:
