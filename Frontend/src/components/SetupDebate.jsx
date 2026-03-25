@@ -14,6 +14,7 @@ export default function SetupDebate({ onDebateStarted }) {
         points: 1,
         team1Name: 'AI Advocates',
         team1Viewpoint: 'AI should be allowed to make decisions in critical areas.',
+        team1Model: 'gpt-3.5-turbo',
         team2Name: 'AI Skeptics',
         team2Viewpoint: 'AI should not be allowed to make decisions in critical areas.',
         team2Model: 'gpt-3.5-turbo'
