@@ -93,10 +93,10 @@ def next_round():
             debate["current_turn"] = "team1"
             debate["current_round"] += 1
             
-            # Check if debate implies completion
+            # Check if debate compleated
             if debate["current_round"] > debate["total_rounds"]:
                 debate["status"] = "completed"
-                # Add Judging logic here
+                # Judging logic here
                 debate["verdict"] = run_judge_verdict(debate)
             
         return jsonify({"message": "Turn completed", "debate": debate})
