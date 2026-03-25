@@ -12,6 +12,13 @@ CORS(app)
 
 debates_store = {}
 
+
+@app.route('/')
+def home():
+    return "Backend is Live!", 200
+
+
+
 @app.route('/api/start_debate', methods=['POST'])
 def start_debate():
     """
