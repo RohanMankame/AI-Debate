@@ -13,10 +13,9 @@ export default function SetupDebate({ onDebateStarted }) {
         rounds: 3,
         points: 1,
         team1Name: 'AI Advocates',
-        team1Viewpoint: 'AI should be allowed to make decisions in critical areas as it can analyze vast amounts of data, reduce human bias, and improve efficiency. With proper oversight, AI can enhance outcomes in healthcare, criminal justice, and financial markets.',
-        team1Model: 'gpt-3.5-turbo',
+        team1Viewpoint: 'AI should be allowed to make decisions in critical areas.',
         team2Name: 'AI Skeptics',
-        team2Viewpoint: 'AI should not be allowed to make decisions in critical areas due to ethical concerns, potential biases in training data, and lack of accountability. Human judgment is essential in these domains to ensure fairness, empathy, and moral responsibility.',
+        team2Viewpoint: 'AI should not be allowed to make decisions in critical areas.',
         team2Model: 'gpt-3.5-turbo'
     });
 

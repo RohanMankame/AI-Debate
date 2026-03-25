@@ -8,5 +8,21 @@ A modern, responsive UI designed to simulate a "stage" environment for AI debate
 - **Glassmorphic UI**: Clean, dark-mode design with readable typography.
 
 
+## Adding New LLM Models
+
+To add more models to the selection dropdown, follow these steps:
+
+*Note: Only supports OpenAI LLM models currently*
+
+1. Open `src/components/SetupDebate.jsx`.
+2. Locate the `MODELS` array at the top of the file.
+3. Add the exact model name string (case-sensitive) to the array.
+
+Example:
+```javascript
+const MODELS = ['gpt-3.5-turbo', 'gpt-4', 'new-model-name'];
+```
+
+
 ## Connection
 The frontend expects the backend to be running at `http://localhost:8000`. You can modify the `API_URL` in `src/components/SetupDebate.jsx` and `src/components/DebateStage.jsx` if your backend port changes.
