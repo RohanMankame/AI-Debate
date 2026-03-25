@@ -111,3 +111,51 @@ def run_debate_turn(debate, turn):
         argument = f"[System Error: Failed to generate response from {active_team['model']}: {str(e)}]"
         
     return argument
+
+
+def run_judge_verdict(debate):
+    """
+    Evaluates the entire debate history and chooses a winner.
+    """
+    topic = debate["topic"]
+    team1 = debate["team1"]
+    team2 = debate["team2"]
+    history = debate["history"]
+    judge_model = debate.get("judge_model", "gpt-4o-mini")
+
+    full_transcript = ""
+    for h in history:
+        full_transcript += f"Round {h['round']}:\n"
+        full_transcript += f"[{team1['name']}]: {h['team1_argument']}\n"
+        full_transcript += f"[{team2['name']}]: {h['team2_argument']}\n\n"
+
+    judge_prompt = f"""You are an expert debate judge. Your task is to evaluate the following debate and declare a clear winner.
+
+    DEBATE TOPIC: {topic}
+    
+    CONTESTANTS:
+    Team 1: {team1['name']} (Viewpoint: {team1['viewpoint']})
+    Team 2: {team2['name']} (Viewpoint: {team2['viewpoint']})
+
+    FULL DEBATE TRANSCRIPT:
+    {full_transcript}
+
+    JUDGING CRITERIA:
+    1. Clarity and logic of arguments.
+    2. How well they refuted the opponent's points.
+    3. Persuasiveness and evidence-based reasoning.
+    4. Adherence to their assigned persona/personality.
+
+    RESPONSE FORMAT:
+    Provide your verdict in this exact format:
+    WINNER: [Team Name]
+    REASONING: [Brief explanation for why they won, citing specific points from the debate]
+    Final verdict must be direct and decisive.
+    """
+
+    try:
+        verdict = get_llm_response(judge_model, judge_prompt, temperature=0.3, max_tokens=500)
+    except Exception as e:
+        verdict = f"WINNER: TIE\nREASONING: The judge encountered an error during deliberation: {str(e)}"
+
+    return verdict

@@ -103,6 +103,22 @@ export default function DebateStage({ debateContext, onReset }) {
                     </div>
                 )}
 
+                {isCompleted && debate.verdict && (
+                    <div className="verdict-card" style={{ 
+                        marginTop: '2rem', 
+                        padding: '2rem', 
+                        background: 'rgba(16, 185, 129, 0.1)', 
+                        border: '2px solid var(--accent-color)', 
+                        borderRadius: '12px',
+                        animation: 'fadeIn 0.5s ease-out'
+                    }}>
+                        <h2 style={{ color: 'var(--accent-color)', marginBottom: '1rem', textAlign: 'center' }}>Judge's Verdict</h2>
+                        <div style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>
+                            {debate.verdict}
+                        </div>
+                    </div>
+                )}
+
                 <div ref={endOfHistoryRef} />
             </div>
         </div>

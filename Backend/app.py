@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from debate_engine import run_debate_turn
+from debate_engine import run_debate_turn, run_judge_verdict
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -31,6 +31,7 @@ def start_debate():
         team2 = data['team2']
         rounds = data.get('rounds', 3)
         points_per_round = data.get('points', 1)
+        judge_model = data.get('judge_model', 'gpt-4o-mini')
         
         debate_id = str(len(debates_store) + 1)
         
@@ -41,10 +42,12 @@ def start_debate():
             "team2": team2,
             "total_rounds": rounds,
             "points_per_round": points_per_round,
+            "judge_model": judge_model,
             "current_round": 1,
             "current_turn": "team1",
             "history": [],
-            "status": "ongoing"
+            "status": "ongoing",
+            "verdict": None
         }
 
         return jsonify({"debate_id": debate_id, "message": "Debate started successfully", "debate": debates_store[debate_id]})
@@ -93,6 +96,8 @@ def next_round():
             # Check if debate implies completion
             if debate["current_round"] > debate["total_rounds"]:
                 debate["status"] = "completed"
+                # Add Judging logic here
+                debate["verdict"] = run_judge_verdict(debate)
             
         return jsonify({"message": "Turn completed", "debate": debate})
     except Exception as e:

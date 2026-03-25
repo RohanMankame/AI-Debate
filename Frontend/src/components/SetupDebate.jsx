@@ -26,7 +26,8 @@ export default function SetupDebate({ onDebateStarted }) {
         team2Name: 'AI Skeptics',
         team2Viewpoint: 'AI should not be allowed to make decisions in critical areas.',
         team2Model: 'gpt-3.5-turbo',
-        team2Personality: 'professional'
+        team2Personality: 'professional',
+        judgeModel: 'gpt-4'
     });
 
     const handleChange = (e) => {
@@ -53,7 +54,8 @@ export default function SetupDebate({ onDebateStarted }) {
                 viewpoint: formData.team2Viewpoint,
                 model: formData.team2Model,
                 personality: PERSONALITIES.find(p => p.id === formData.team2Personality)?.prompt || ''
-            }
+            },
+            judge_model: formData.judgeModel
         };
 
         try {
@@ -138,6 +140,14 @@ export default function SetupDebate({ onDebateStarted }) {
                             <textarea name="team2Viewpoint" value={formData.team2Viewpoint} onChange={handleChange} rows="3" required />
                         </div>
                     </div>
+                </div>
+
+                <div className="form-group" style={{ marginTop: '1.5rem', padding: '1rem', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }}>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Judge Model</label>
+                    <p style={{ fontSize: '0.8rem', opacity: 0.7, marginBottom: '0.5rem' }}>The model that will evaluate the final debate and declare a winner.</p>
+                    <select name="judgeModel" value={formData.judgeModel} onChange={handleChange}>
+                        {MODELS.map(m => <option key={m} value={m}>{m}</option>)}
+                    </select>
                 </div>
 
                 <button type="submit" className="btn btn-primary" disabled={loading} style={{ marginTop: '1rem' }}>
