@@ -23,7 +23,7 @@ export default function DebateStage({ debateContext, onReset }) {
             setDebate(resp.data.debate);
         } catch (err) {
             console.error(err);
-            setError('Failed to fetch the next round. Check backend and API keys.');
+            setError('Failed to fetch the next round. Check backend and API keys. Access this link to wake up the backend: https://ai-debate-backend-plqd.onrender.com');
         } finally {
             setLoading(false);
         }

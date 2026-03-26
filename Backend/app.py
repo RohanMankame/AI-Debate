@@ -15,7 +15,7 @@ debates_store = {}
 
 @app.route('/')
 def home():
-    return "Backend is Live!", 200
+    return "Backend is Live! you can access the frontend here: https://ai-debate-frontend-j71z.onrender.com", 200
 
 
 

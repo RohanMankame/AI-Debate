@@ -63,7 +63,7 @@ export default function SetupDebate({ onDebateStarted }) {
             onDebateStarted(resp.data);
         } catch (err) {
             console.error(err);
-            setError('Failed to start debate. Check backend connection.');
+            setError('Failed to start debate. Check backend connection. Access this link to wake up the backend: https://ai-debate-backend-plqd.onrender.com');
         } finally {
             setLoading(false);
         }
