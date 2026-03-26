@@ -8,6 +8,28 @@ The core engine responsible for fetching arguments from multiple LLM providers a
 - `POST /api/next_round`: Triggers the next LLM to generate an argument based on the transcript.
 - `GET /api/debate/<id>`: Retrieves current debate state.
 
+## Requirements
+- Python 3.9+
+- Active OpenAI key LLMs you wish to use.
+
+### Prepare the Backend
+```bash
+cd Backend
+python -m venv venv
+# Windows:
+.\venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
+
+pip install -r requirements.txt
+```
+
+### Configure API Key
+Create a `Backend/.env` file:
+```env
+OPENAI_API_KEY=your_key_here
+```
+
 ## Supported Models
 - **OpenAI**: `gpt-3.5-turbo`, `gpt-4`, `gpt-4.1-nano`, `gpt-4o-mini`, `gpt-4.1`,`gpt-5-chat`
 
@@ -16,19 +38,3 @@ Currently only support OpenAI modals as I dont have tokens for Anthropic and Goo
 - **Anthropic**: Not supported but you can add a simple call in get_llm_response function in debate_engine.py
 
 - **Google**: Not supported but you can add a simple call in get_llm_response function in debate_engine.py
-
-## Requirements
-- Python 3.9+
-- Active OpenAI key LLMs you wish to use.
-
-## 🔐 Configuration
-
-Before running the backend, you must set up your environment variables. 
-
-1. Create a file named `.env` in the `Backend/` directory.
-2. Add your OpenAI API key to the file:
-
-```env
-OPENAI_API_KEY=your_openai_api_key_here
-```
-3. You can add additional OpenAI LLM modals by adding them to the frontend modal dropdown selection section. Refer to the frontend redeme for info.

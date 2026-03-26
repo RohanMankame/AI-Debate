@@ -5,6 +5,15 @@ Set the LLM model, debate topic, debator view points, number of rounds and more.
 
 ---
 
+## Deployed
+
+The application is deployed on Render and can be accessed here:
+
+- **Frontend:** [https://ai-debate-frontend-j71z.onrender.com](https://ai-debate-frontend-j71z.onrender.com)
+- **Backend (API):** [https://ai-debate-backend-plqd.onrender.com](https://ai-debate-backend-plqd.onrender.com)
+
+> **Note:** These services run on free instances. Please visit the **Backend** first to "wake up" the service, then access the the **frontend**. 
+
 ## Folders
 
 - **`Backend/`**: Python Flask API that manages debate state and orchestrates LLM calls.
@@ -12,27 +21,9 @@ Set the LLM model, debate topic, debator view points, number of rounds and more.
 
 ## Quick Start (Local Setup)
 
-### Prepare the Backend
-```bash
-cd Backend
-python -m venv venv
-# Windows:
-.\venv\Scripts\activate
-# Mac/Linux:
-source venv/bin/activate
+Please Check backend and frontend readme to see how to setup project properly. Seperate readmes are avalable in both frontend and backend folders.
 
-pip install -r requirements.txt
-```
-
-### Configure API Keys
-Create a `Backend/.env` file:
-```env
-OPENAI_API_KEY=your_key_here
-ANTHROPIC_API_KEY=your_key_here
-GEMINI_API_KEY=your_key_here
-```
-
-### Run the backend
+### Run the program after setup
 **Start Backend:**
 ```bash
 cd Backend

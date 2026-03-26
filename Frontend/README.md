@@ -8,6 +8,22 @@ A modern, responsive UI designed to simulate a "stage" environment for AI debate
 - **Glassmorphic UI**: Clean, dark-mode design with readable typography.
 
 
+## Requirements
+- npm 
+
+### 1. Prepare the Frontend
+Before running the application, ensure you have [Node.js](https://nodejs.org/) installed. Then, install the project dependencies:
+
+```bash
+# Navigate to the frontend directory
+cd Frontend
+
+# Install dependencies using npm
+npm install
+```
+
+
+
 ## Adding New LLM Models
 
 To add more models to the selection dropdown, follow these steps:
@@ -25,4 +41,5 @@ const MODELS = ['gpt-3.5-turbo', 'gpt-4', 'new-model-name'];
 
 
 ## Connection
-The frontend expects the backend to be running at `http://localhost:8000`. You can modify the `API_URL` in `src/components/SetupDebate.jsx` and `src/components/DebateStage.jsx` if your backend port changes.
+If used locally the frontend expects the backend to be running at `http://localhost:8000`. You can modify the `API_URL` in `src/components/SetupDebate.jsx` and `src/components/DebateStage.jsx` if backend port changes.
+
